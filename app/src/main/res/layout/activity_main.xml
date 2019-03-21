@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PeopleCom">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    tools:context=".ui.PeopleCom">
 
     <ListView
         android:id="@+id/storeList"
+        android:divider="#d3d3d3"
+        android:dividerHeight="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
