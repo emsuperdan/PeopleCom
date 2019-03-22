@@ -43,21 +43,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:background="#ffffff"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/detail_com"
+                android:id="@+id/edit_detail_com"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:hint="评论" />
 
             <EditText
-                android:id="@+id/detail_score"
+                android:id="@+id/edit_detail_score"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:hint="评分" />
+            <Button
+                android:id="@+id/detail_send"
+                android:text="发送"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"/>
         </LinearLayout>
 
     </RelativeLayout>

@@ -17,16 +17,13 @@ public class UserAccountTextViewActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_user_account_textview);
+        init();
     }
 
-    @Override
-    public void initView() {
+    public void init() {
         mUserAccount = findViewById(R.id.navigation_user_account);
         mUserPassword = findViewById(R.id.navigation_user_password);
-    }
 
-    @Override
-    public void initData() {
         Intent intent = getIntent();
         mUserAccount.setText(intent.getStringExtra(Constants.Store.USER_ACCOUNT));
         mUserPassword.setText(intent.getStringExtra(Constants.Store.USER_PASSWORD));

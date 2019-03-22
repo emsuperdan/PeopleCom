@@ -23,26 +23,20 @@ public class PeopleCom extends BaseActivity {
     private ArrayList<StoreBean> mStoreList;
     private NavigationView mNavigationView;
 
-    @Override
-    public void initView() {
-    }
-
-    @Override
-    public void initData() {
+    public void init() {
         mListView = findViewById(R.id.storeList);
         mNavigationView = findViewById(R.id.navigation_view);
-        ArrayList<StoreBean> list=new ArrayList<>();
-        mAdapter=null;
-        list.add(new StoreBean("商家一",R.drawable.ic_launcher_background));
-        list.add(new StoreBean("商家二",R.drawable.ic_launcher_background));
-        list.add(new StoreBean("商家三",R.drawable.ic_launcher_background));
-        list.add(new StoreBean("商家四",R.drawable.ic_launcher_background));
+
+        ArrayList<StoreBean> list = new ArrayList<>();
+        list.add(new StoreBean("商家一", R.drawable.ic_launcher_background));
+        list.add(new StoreBean("商家二", R.drawable.ic_launcher_background));
+        list.add(new StoreBean("商家三", R.drawable.ic_launcher_background));
+        list.add(new StoreBean("商家四", R.drawable.ic_launcher_background));
+        mStoreList=list;
         mAdapter = new BaseAdapter(this, list);
         mListView.setAdapter(mAdapter);
-    }
 
-    @Override
-    public void initClickItem() {
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -80,8 +74,6 @@ public class PeopleCom extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
-        initData();
-        initClickItem();
+        init();
     }
 }

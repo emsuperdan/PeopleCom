@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.StoreDetailActivity"/>
+        <activity android:name=".ui.UserAccountTextViewActivity"/>
     </application>
 
 </manifest>

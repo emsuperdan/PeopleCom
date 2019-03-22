@@ -52,7 +52,7 @@ public class UserComAdapter extends android.widget.BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.mUserScore.setText(userBean.getmScore());
+        viewHolder.mUserScore.setText(String.valueOf(userBean.getmScore()));
         viewHolder.mUserName.setText(userBean.getmUserName());
         viewHolder.mUserComText.setText(userBean.getmCommentText());
         viewHolder.mUserComImage.setImageResource(userBean.getmCommentImage());
