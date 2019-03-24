@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,26 +15,34 @@ import com.example.tangdan.myapplication.base.BaseActivity;
 import com.example.tangdan.myapplication.base.BaseAdapter;
 import com.example.tangdan.myapplication.bean.Constants;
 import com.example.tangdan.myapplication.bean.StoreBean;
+import com.example.tangdan.myapplication.helper.BmobDbHelper;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
 
 public class PeopleCom extends BaseActivity {
+    private static final String TAG = "PeopleCom";
     private ListView mListView;
     private BaseAdapter mAdapter;
     private ArrayList<StoreBean> mStoreList;
     private NavigationView mNavigationView;
 
     public void init() {
+        ArrayList<StoreBean> list = new ArrayList<>();
+//        list.add(new StoreBean(getBmobStoreNameById("obQ2eeek"), R.drawable.ic_launcher_background));
+//        list.add(new StoreBean(getBmobStoreNameById("wzAS999H"), R.drawable.ic_launcher_background));
+//        list.add(new StoreBean(getBmobStoreNameById("jQfG777l"), R.drawable.ic_launcher_background));
+//        list.add(new StoreBean(getBmobStoreNameById("cANF888B"), R.drawable.ic_launcher_background));
+        mStoreList=list;
         mListView = findViewById(R.id.storeList);
         mNavigationView = findViewById(R.id.navigation_view);
 
-        ArrayList<StoreBean> list = new ArrayList<>();
-        list.add(new StoreBean("商家一", R.drawable.ic_launcher_background));
-        list.add(new StoreBean("商家二", R.drawable.ic_launcher_background));
-        list.add(new StoreBean("商家三", R.drawable.ic_launcher_background));
-        list.add(new StoreBean("商家四", R.drawable.ic_launcher_background));
-        mStoreList=list;
-        mAdapter = new BaseAdapter(this, list);
+        mAdapter = new BaseAdapter(this, mStoreList);
         mListView.setAdapter(mAdapter);
 
 
@@ -74,6 +83,35 @@ public class PeopleCom extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BmobDbHelper.getInstance().init(this);
         init();
+        getBmobStoreNameById();
+    }
+
+    private String mStorename =null;
+
+    private void getBmobStoreNameById(){
+        BmobQuery<StoreBean> query=new BmobQuery<>();
+        query.findObjects(new FindListener<StoreBean>() {
+            @Override
+            public void done(List<StoreBean> list, BmobException e) {
+                int n=list.size();
+                for (int i=0;i<n;i++){
+                    mStoreList.add(list.get(n));
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+//        new BmobQuery<StoreBean>().getObject(Id, new QueryListener<StoreBean>() {
+//            @Override
+//            public void done(StoreBean storeBean, BmobException e) {
+//                if (e==null){
+//                    Log.d(TAG,"          "+storeBean.getmStoreName());
+//                    mStorename =storeBean.getmStoreName();
+//                }else {
+//                    Log.d(TAG,"查询失败");
+//                }
+//            }
+//        });
     }
 }
