@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -10,16 +10,18 @@
 
         <TextView
             android:id="@+id/username"
+            android:textStyle="bold"
+            android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用户aaaa" />
 
-        <TextView
-            android:id="@+id/userscore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="评分：" />
+        <!--<TextView-->
+            <!--android:id="@+id/userscore"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="评分：" />-->
     </RelativeLayout>
 
     <TextView
@@ -31,7 +33,7 @@
     <ImageView
         android:id="@+id/user_com_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:src="@mipmap/ic_launcher"
         android:visibility="gone" />
 

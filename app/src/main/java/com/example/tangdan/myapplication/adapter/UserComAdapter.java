@@ -45,24 +45,29 @@ public class UserComAdapter extends android.widget.BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.mUserComImage = convertView.findViewById(R.id.user_com_image);
             viewHolder.mUserComText = convertView.findViewById(R.id.user_com_text);
-            viewHolder.mUserName = convertView.findViewById(R.id.username);
-            viewHolder.mUserScore = convertView.findViewById(R.id.userscore);
+            viewHolder.mUserAccount = convertView.findViewById(R.id.username);
+//            viewHolder.mUserScore = convertView.findViewById(R.id.userscore);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.mUserScore.setText(String.valueOf(userBean.getmScore()));
-        viewHolder.mUserName.setText(userBean.getmUserName());
+//        viewHolder.mUserScore.setText(String.valueOf(userBean.getmScore()));
+        viewHolder.mUserAccount.setText(userBean.getmUserAccount());
         viewHolder.mUserComText.setText(userBean.getmCommentText());
-        viewHolder.mUserComImage.setImageResource(userBean.getmCommentImage());
+        if (userBean.getPicDecodeUrl()!=null){
+            viewHolder.mUserComImage.setVisibility(View.VISIBLE);
+        }else {
+            viewHolder.mUserComImage.setVisibility(View.GONE);
+        }
+        viewHolder.mUserComImage.setImageBitmap(userBean.getPicDecodeUrl());
 
         return convertView;
     }
 
     class ViewHolder {
-        public TextView mUserName;
-        public TextView mUserScore;
+        public TextView mUserAccount;
+//        public TextView mUserScore;
         public TextView mUserComText;
         public ImageView mUserComImage;
     }

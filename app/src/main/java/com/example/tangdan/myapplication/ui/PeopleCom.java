@@ -23,6 +23,12 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 
+import static com.example.tangdan.myapplication.bean.Constants.Register.USER_ACCOUNT_REGISTER;
+import static com.example.tangdan.myapplication.bean.Constants.Register.USER_PASSWORD_REGISTER;
+import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_IMAGE;
+import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_NAME;
+import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_OBJECT_ID;
+
 public class PeopleCom extends BaseActivity {
     private static final String TAG = "PeopleCom";
     private ListView mListView;
@@ -30,13 +36,20 @@ public class PeopleCom extends BaseActivity {
     private ArrayList<StoreBean> mStoreList;
     private NavigationView mNavigationView;
 
+    private String mAccount;
+    private String mPassword;
+
     public void init() {
         mListView = findViewById(R.id.storeList);
         mNavigationView = findViewById(R.id.navigation_view);
 
-        mStoreList=new ArrayList<>();
+        mStoreList = new ArrayList<>();
         mAdapter = new BaseAdapter(this, mStoreList);
         mListView.setAdapter(mAdapter);
+
+        Intent intent = getIntent();
+        mAccount = intent.getStringExtra(USER_ACCOUNT_REGISTER);
+        mPassword = intent.getStringExtra(USER_PASSWORD_REGISTER);
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -44,8 +57,8 @@ public class PeopleCom extends BaseActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.main_user_account:
                         Intent intent = new Intent(PeopleCom.this, UserAccountTextViewActivity.class);
-                        intent.putExtra(Constants.Store.USER_ACCOUNT, "账户ming");
-                        intent.putExtra(Constants.Store.USER_PASSWORD, "密码");
+                        intent.putExtra(Constants.Store.USER_ACCOUNT, mAccount);
+                        intent.putExtra(Constants.Store.USER_PASSWORD, mPassword);
                         startActivity(intent);
                         break;
                     default:
@@ -59,9 +72,10 @@ public class PeopleCom extends BaseActivity {
     private void navigateClick(int position) {
         StoreBean storeBean = mStoreList.get(position);
         Intent intent = new Intent(PeopleCom.this, StoreDetailActivity.class);
-        intent.putExtra(Constants.Store.STORE_NAME, storeBean.getmStoreName());
-        intent.putExtra(Constants.Store.STORE_IMAGE, storeBean.getmStoreImage());
-        intent.putExtra(Constants.Store.STORE_OBJECT_ID,storeBean.getmCopyStoreId());
+        intent.putExtra(STORE_NAME, storeBean.getmStoreName());
+        intent.putExtra(STORE_IMAGE, storeBean.getmStoreImage());
+        intent.putExtra(STORE_OBJECT_ID, storeBean.getmCopyStoreId());
+        intent.putExtra(USER_ACCOUNT_REGISTER,mAccount);
         startActivity(intent);
     }
 
@@ -80,28 +94,30 @@ public class PeopleCom extends BaseActivity {
             }
         });
     }
-    private String[] objectIdArr ={"0VMTAAAo","2ShaMMMc","1EoHKKKW","FxztCCCD"};
+
+    private String[] objectIdArr = {"0VMTAAAo", "2ShaMMMc", "1EoHKKKW", "FxztCCCD"};
 
     private void refreshData() {
-        for (int i=0;i<4;i++){
+        for (int i = 0; i < 4; i++) {
             getBmobStoreNameById(objectIdArr[i]);
         }
     }
 
-    private void getBmobStoreNameById(String Id){
-        new BmobQuery<StoreBean>().getObject(Id, new QueryListener<StoreBean>() {
+    private void getBmobStoreNameById(String Id) {
+        BmobQuery<StoreBean> query = new BmobQuery<>();
+        query.getObject(Id, new QueryListener<StoreBean>() {
             @Override
             public void done(StoreBean storeBean, BmobException e) {
-                if (e==null){
-                    Log.d(TAG,"          "+storeBean.getmStoreName()+"     "+storeBean.getObjectId());
-                    StoreBean bean=new StoreBean();
+                if (e == null) {
+                    Log.d(TAG, "          " + storeBean.getmStoreName() + "     " + storeBean.getObjectId());
+                    StoreBean bean = new StoreBean();
                     bean.setmStoreName(storeBean.getmStoreName());
                     bean.setmStoreImage(R.mipmap.ic_launcher);
                     bean.setmCopyStoreId(storeBean.getObjectId());
                     mStoreList.add(bean);
                     mAdapter.notifyDataSetChanged();
-                }else {
-                    Log.d(TAG,"查询失败"+e.getErrorCode());
+                } else {
+                    Log.d(TAG, "查询失败" + e.getErrorCode());
                 }
             }
         });

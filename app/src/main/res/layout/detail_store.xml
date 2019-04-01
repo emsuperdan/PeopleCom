@@ -59,15 +59,15 @@
                         android:id="@+id/edit_detail_com"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.6"
                         android:hint="评论" />
 
-                    <EditText
-                        android:id="@+id/edit_detail_score"
+                    <ImageView
+                        android:id="@+id/btn_sendpic"
+                        android:src="@mipmap/ic_launcher"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.4"
-                        android:hint="评分" />
+                        android:layout_weight="0.2"
+                        android:layout_height="match_parent" />
 
                     <Button
                         android:id="@+id/detail_send"
@@ -85,3 +85,10 @@
 
 
 </LinearLayout>
+
+    <!--<EditText-->
+    <!--android:id="@+id/edit_detail_score"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="0.4"-->
+    <!--android:hint="评分" />-->
