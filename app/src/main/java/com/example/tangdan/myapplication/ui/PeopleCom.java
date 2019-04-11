@@ -1,82 +1,67 @@
 package com.example.tangdan.myapplication.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.util.Log;
-import android.view.MenuItem;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.tangdan.myapplication.R;
 import com.example.tangdan.myapplication.base.BaseActivity;
-import com.example.tangdan.myapplication.base.BaseAdapter;
-import com.example.tangdan.myapplication.bean.Constants;
-import com.example.tangdan.myapplication.bean.StoreBean;
 import com.example.tangdan.myapplication.helper.BmobDbHelper;
 
-import java.util.ArrayList;
+public class PeopleCom extends BaseActivity implements View.OnClickListener {
+    private FragmentManager mFragmentManager;
+    private FragmentTransaction mFragmentTransaction;
+    private ImageView mHomePageBtn;
+    private ImageView mSettingBtn;
 
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.QueryListener;
-
-import static com.example.tangdan.myapplication.bean.Constants.Register.USER_ACCOUNT_REGISTER;
-import static com.example.tangdan.myapplication.bean.Constants.Register.USER_PASSWORD_REGISTER;
-import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_IMAGE;
-import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_NAME;
-import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_OBJECT_ID;
-
-public class PeopleCom extends BaseActivity {
-    private static final String TAG = "PeopleCom";
-    private ListView mListView;
-    private BaseAdapter mAdapter;
-    private ArrayList<StoreBean> mStoreList;
-    private NavigationView mNavigationView;
-
-    private String mAccount;
-    private String mPassword;
+    private MainFragment mMainFragment;
+    private SettingFragment mSettingFragment;
 
     public void init() {
-        mListView = findViewById(R.id.storeList);
-        mNavigationView = findViewById(R.id.navigation_view);
+        mHomePageBtn = findViewById(R.id.btn_homepage);
+        mSettingBtn = findViewById(R.id.btn_setting);
+        mFragmentManager = getSupportFragmentManager();
+        selectFragment(0);
 
-        mStoreList = new ArrayList<>();
-        mAdapter = new BaseAdapter(this, mStoreList);
-        mListView.setAdapter(mAdapter);
-
-        Intent intent = getIntent();
-        mAccount = intent.getStringExtra(USER_ACCOUNT_REGISTER);
-        mPassword = intent.getStringExtra(USER_PASSWORD_REGISTER);
-
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.main_user_account:
-                        Intent intent = new Intent(PeopleCom.this, UserAccountTextViewActivity.class);
-                        intent.putExtra(Constants.Store.USER_ACCOUNT, mAccount);
-                        intent.putExtra(Constants.Store.USER_PASSWORD, mPassword);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
+        mHomePageBtn.setOnClickListener(this);
+        mSettingBtn.setOnClickListener(this);
     }
 
-    private void navigateClick(int position) {
-        StoreBean storeBean = mStoreList.get(position);
-        Intent intent = new Intent(PeopleCom.this, StoreDetailActivity.class);
-        intent.putExtra(STORE_NAME, storeBean.getmStoreName());
-        intent.putExtra(STORE_IMAGE, storeBean.getmStoreImage());
-        intent.putExtra(STORE_OBJECT_ID, storeBean.getmCopyStoreId());
-        intent.putExtra(USER_ACCOUNT_REGISTER,mAccount);
-        startActivity(intent);
+    private void hideAllFragment(FragmentTransaction fragmentTransaction) {
+        if (mMainFragment != null) {
+            fragmentTransaction.hide(mMainFragment);
+        }
+        if (mSettingFragment != null) {
+            fragmentTransaction.hide(mSettingFragment);
+        }
+    }
+
+    private void selectFragment(int index) {
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        hideAllFragment(mFragmentTransaction);
+        switch (index) {
+            case 0:
+                if (mMainFragment == null) {
+                    mMainFragment=new MainFragment();
+                    mFragmentTransaction.add(R.id.container, mMainFragment);
+                }
+                mFragmentTransaction.show(mMainFragment);
+                break;
+            case 1:
+                if (mSettingFragment == null) {
+                    mSettingFragment=new SettingFragment();
+                    mFragmentTransaction.add(R.id.container, mSettingFragment);
+                }
+                mFragmentTransaction.show(mSettingFragment);
+                break;
+            default:
+                break;
+        }
+        mFragmentTransaction.commit();
     }
 
     @Override
@@ -85,41 +70,36 @@ public class PeopleCom extends BaseActivity {
         setContentView(R.layout.activity_main);
         BmobDbHelper.getInstance().init(this);
         init();
-        refreshData();
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                navigateClick(position);
-            }
-        });
     }
 
-    private String[] objectIdArr = {"0VMTAAAo", "2ShaMMMc", "1EoHKKKW", "FxztCCCD"};
+    private long mPressTime;
 
-    private void refreshData() {
-        for (int i = 0; i < 4; i++) {
-            getBmobStoreNameById(objectIdArr[i]);
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - mPressTime > 500) {
+                Toast.makeText(PeopleCom.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                mPressTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return false;
         }
+        return super.onKeyDown(keyCode, event);
     }
 
-    private void getBmobStoreNameById(String Id) {
-        BmobQuery<StoreBean> query = new BmobQuery<>();
-        query.getObject(Id, new QueryListener<StoreBean>() {
-            @Override
-            public void done(StoreBean storeBean, BmobException e) {
-                if (e == null) {
-                    Log.d(TAG, "          " + storeBean.getmStoreName() + "     " + storeBean.getObjectId());
-                    StoreBean bean = new StoreBean();
-                    bean.setmStoreName(storeBean.getmStoreName());
-                    bean.setmStoreImage(R.mipmap.ic_launcher);
-                    bean.setmCopyStoreId(storeBean.getObjectId());
-                    mStoreList.add(bean);
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    Log.d(TAG, "查询失败" + e.getErrorCode());
-                }
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_homepage:
+                selectFragment(0);
+                break;
+            case R.id.btn_setting:
+                selectFragment(1);
+                break;
+            default:
+                break;
+        }
     }
 }

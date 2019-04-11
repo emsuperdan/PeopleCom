@@ -1,7 +1,9 @@
 package com.example.tangdan.myapplication.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,7 +14,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,7 +28,6 @@ import android.widget.Toast;
 import com.example.tangdan.myapplication.R;
 import com.example.tangdan.myapplication.adapter.UserComAdapter;
 import com.example.tangdan.myapplication.base.BaseActivity;
-import com.example.tangdan.myapplication.bean.Constants;
 import com.example.tangdan.myapplication.bean.MyUser;
 import com.example.tangdan.myapplication.bean.StoreBean;
 import com.example.tangdan.myapplication.bean.UserBean;
@@ -63,6 +67,8 @@ public class StoreDetailActivity extends BaseActivity {
     private SwipeRefreshLayout mSwipe;
     private ImageView mSendPicButton;
 
+    private ImageView mDialogShowPic;
+
     private UserBean mUserBean;
     private StoreBean mStoreBean;
     private MyUser mMyUser;
@@ -94,11 +100,8 @@ public class StoreDetailActivity extends BaseActivity {
 //                    int score = Integer.valueOf(mDetailScoreEdit.getText().toString());
 
                     mUserBean.setmCommentText(comment);
-//                    mUserBean.setmScore(score);
                     mStoreBean.setObjectId(mStoreObjectId);
-//                    mMyUser.setObjectId();
                     mUserBean.setLinkToStore(mStoreBean);
-//                    mUserBean.setmLinkToUserAccount(mMyUser);
                     mUserBean.setmUserAccount(mUserAccountName);
 
                     //图片进行上传
@@ -140,6 +143,46 @@ public class StoreDetailActivity extends BaseActivity {
                 }
 
                 mPicPath = null;
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                UserBean userBean = mUserList.get(position);
+                if (userBean.getPicDecodeUrl() != null) {
+                    View showDialogView = LayoutInflater.from(StoreDetailActivity.this).inflate(R.layout.dialog_showpic, null);
+                    ImageView showBigImage = showDialogView.findViewById(R.id.dialog_showpic_image);
+                    final AlertDialog dialog = new AlertDialog.Builder(StoreDetailActivity.this).create();
+                    showBigImage.setImageBitmap(userBean.getPicDecodeUrl());
+                    dialog.setView(showDialogView);
+                    dialog.show();
+
+                    showDialogView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                }
+            }
+        });
+
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                View firstView = view.getChildAt(firstVisibleItem);
+                //当firstItem是第0位，或者firstView为空（数据为空）或者listview最上面top一个item恰好等于0
+                if (firstVisibleItem == 0 && (firstView == null || firstView.getTop() == 0)) {
+                    mSwipe.setEnabled(true);
+                } else {
+                    mSwipe.setEnabled(false);
+                }
             }
         });
 
@@ -258,10 +301,14 @@ public class StoreDetailActivity extends BaseActivity {
         mSendButton = findViewById(R.id.detail_send);
         mSendPicButton = findViewById(R.id.btn_sendpic);
         mSwipe = findViewById(R.id.swipe);
+        mDialogShowPic = findViewById(R.id.user_com_image);
 
         Intent intent = getIntent();
         mStoreDetailName.setText(intent.getStringExtra(STORE_NAME));
-        mStoreDetailImage.setImageResource(intent.getIntExtra(STORE_IMAGE, R.mipmap.ic_launcher));
+//        mStoreDetailImage.setImageResource(intent.getIntExtra(STORE_IMAGE, R.mipmap.ic_launcher));
+        byte[] bis = intent.getByteArrayExtra(STORE_IMAGE);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bis, 0, bis.length);
+        mStoreDetailImage.setImageBitmap(bitmap);
         mStoreObjectId = intent.getStringExtra(STORE_OBJECT_ID);
         mUserAccountName = intent.getStringExtra(USER_ACCOUNT_REGISTER);
 

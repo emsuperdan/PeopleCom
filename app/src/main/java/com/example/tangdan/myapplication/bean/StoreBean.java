@@ -1,6 +1,9 @@
 package com.example.tangdan.myapplication.bean;
 
+import android.graphics.Bitmap;
+
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
 
 
@@ -10,6 +13,8 @@ public class StoreBean extends BmobObject {
     private int mStoreImage;
     private BmobRelation mapToUser;
     private String mCopyStoreId;
+    private BmobFile mStorePicUri;
+    private Bitmap mStorePic;
 
     public void setmStoreName(String mStoreName) {
         this.mStoreName = mStoreName;
@@ -41,5 +46,21 @@ public class StoreBean extends BmobObject {
 
     public void setmCopyStoreId(String mCopyStoreId) {
         this.mCopyStoreId = mCopyStoreId;
+    }
+
+    public BmobFile getmStorePicUri() {
+        return mStorePicUri;
+    }
+
+    public void setmStorePicUri(BmobFile mStorePic) {
+        this.mStorePicUri = mStorePic;
+    }
+
+    public Bitmap getmStorePic() {
+        return mStorePic;
+    }
+
+    public void setmStorePic(Bitmap mStorePic) {
+        this.mStorePic = mStorePic;
     }
 }

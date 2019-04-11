@@ -23,10 +23,11 @@
             <ImageView
                 android:id="@+id/detail_storeimage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="130dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher" />
 
             <View
@@ -43,41 +44,47 @@
                     android:id="@+id/user_com_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="0dp"
                     android:layout_marginRight="10dp"
                     android:divider="#d3d3d3"
-                    android:dividerHeight="2dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="#ffffff"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edit_detail_com"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:hint="评论" />
-
-                    <ImageView
-                        android:id="@+id/btn_sendpic"
-                        android:src="@mipmap/ic_launcher"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.2"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:id="@+id/detail_send"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.2"
-                        android:text="发送" />
-                </LinearLayout>
+                    android:dividerHeight="1dp" />
 
             </RelativeLayout>
+            <View
+                android:background="#808080"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edit_detail_com"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:hint="评论" />
+
+                <ImageView
+                    android:id="@+id/btn_sendpic"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/upload_pic" />
+
+                <Button
+                    android:id="@+id/detail_send"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:text="发送" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -85,10 +92,3 @@
 
 
 </LinearLayout>
-
-    <!--<EditText-->
-    <!--android:id="@+id/edit_detail_score"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="0.4"-->
-    <!--android:hint="评分" />-->

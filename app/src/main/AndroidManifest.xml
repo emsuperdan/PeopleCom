@@ -18,9 +18,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.PeopleCom"></activity>
         <activity
+            android:theme="@style/ShowDetailTheme"
             android:name=".ui.StoreDetailActivity" />
         <activity android:name=".ui.UserAccountTextViewActivity" />
-        <activity android:name=".ui.WelcomePage">
+        <activity
+            android:theme="@style/ShowDetailTheme"
+            android:name=".ui.WelcomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

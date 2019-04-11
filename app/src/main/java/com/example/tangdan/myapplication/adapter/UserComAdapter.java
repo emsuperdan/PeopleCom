@@ -57,10 +57,10 @@ public class UserComAdapter extends android.widget.BaseAdapter {
         viewHolder.mUserComText.setText(userBean.getmCommentText());
         if (userBean.getPicDecodeUrl()!=null){
             viewHolder.mUserComImage.setVisibility(View.VISIBLE);
+            viewHolder.mUserComImage.setImageBitmap(userBean.getPicDecodeUrl());
         }else {
             viewHolder.mUserComImage.setVisibility(View.GONE);
         }
-        viewHolder.mUserComImage.setImageBitmap(userBean.getPicDecodeUrl());
 
         return convertView;
     }

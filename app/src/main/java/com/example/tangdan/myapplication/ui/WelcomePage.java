@@ -88,6 +88,7 @@ public class WelcomePage extends BaseActivity {
                                     }
                                 }
                             } else {
+                                Toast.makeText(WelcomePage.this,"网络连接失败,请检查网络！",Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "查询云端失败" + e.getErrorCode());
                             }
                         }

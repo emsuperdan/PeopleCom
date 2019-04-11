@@ -51,7 +51,11 @@ public class BaseAdapter extends android.widget.BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.mStoreName.setText(storeBean.getmStoreName());
-        viewHolder.mStoreImage.setImageResource(storeBean.getmStoreImage());
+        if (storeBean.getmStorePic() == null) {
+            viewHolder.mStoreImage.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            viewHolder.mStoreImage.setImageBitmap(storeBean.getmStorePic());
+        }
 
         return convertView;
     }
