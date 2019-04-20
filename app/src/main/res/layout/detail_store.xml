@@ -75,6 +75,8 @@
                     android:id="@+id/btn_sendpic"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
                     android:layout_weight="0.2"
                     android:src="@drawable/upload_pic" />
 

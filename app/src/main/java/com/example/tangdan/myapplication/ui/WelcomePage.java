@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tangdan.myapplication.R;
@@ -23,6 +24,7 @@ import cn.bmob.v3.listener.FindListener;
 
 import static com.example.tangdan.myapplication.bean.Constants.Register.USER_ACCOUNT_REGISTER;
 import static com.example.tangdan.myapplication.bean.Constants.Register.USER_PASSWORD_REGISTER;
+import static com.example.tangdan.myapplication.bean.Constants.Store.USER_OBJECT_ID;
 
 public class WelcomePage extends BaseActivity {
     private static final String TAG = "WelcomePage";
@@ -30,6 +32,7 @@ public class WelcomePage extends BaseActivity {
     private EditText mEditPasswordText;
     private Button mLoginButton;
     private Button mRegisterButton;
+    private TextView textView;
 
     private MyUser mMyUser;
     private String mAccount;
@@ -48,6 +51,7 @@ public class WelcomePage extends BaseActivity {
         mEditPasswordText = findViewById(R.id.edit_password);
         mLoginButton = findViewById(R.id.btn_login);
         mRegisterButton = findViewById(R.id.btn_register);
+//        textView=findViewById(R.id.txt_forget_password);
 
         mMyUser = new MyUser();
 
@@ -68,7 +72,7 @@ public class WelcomePage extends BaseActivity {
                                 Log.d(TAG, "查询云端成功");
                                 if (list.size() == 0) {
                                     Log.d(TAG, "云端中无此账号存在");
-                                    Toast.makeText(WelcomePage.this, "账号不存在，请注册！", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(WelcomePage.this, "账号或密码错误！", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d(TAG, "云端中有此账号");
                                     mMyUser = list.get(0);
@@ -83,18 +87,19 @@ public class WelcomePage extends BaseActivity {
                                         Intent intent = new Intent(WelcomePage.this, PeopleCom.class);
                                         intent.putExtra(USER_ACCOUNT_REGISTER, mAccount);
                                         intent.putExtra(USER_PASSWORD_REGISTER, mPassword);
+                                        intent.putExtra(USER_OBJECT_ID,mMyUser.getObjectId());
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                     }
                                 }
                             } else {
-                                Toast.makeText(WelcomePage.this,"网络连接失败,请检查网络！",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(WelcomePage.this,"阿欧，好像网络不行",Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "查询云端失败" + e.getErrorCode());
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(WelcomePage.this, "账号或密码为空！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WelcomePage.this, "账号或密码不能为空！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -107,6 +112,13 @@ public class WelcomePage extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+//        textView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 
 //    @Override

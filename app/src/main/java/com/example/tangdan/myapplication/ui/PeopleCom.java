@@ -3,6 +3,7 @@ package com.example.tangdan.myapplication.ui;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,9 +11,9 @@ import android.widget.Toast;
 
 import com.example.tangdan.myapplication.R;
 import com.example.tangdan.myapplication.base.BaseActivity;
-import com.example.tangdan.myapplication.helper.BmobDbHelper;
 
-public class PeopleCom extends BaseActivity implements View.OnClickListener {
+public class PeopleCom extends BaseActivity implements View.OnClickListener{
+    private static final String TAG = "PeopleCom";
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
     private ImageView mHomePageBtn;
@@ -46,14 +47,14 @@ public class PeopleCom extends BaseActivity implements View.OnClickListener {
         switch (index) {
             case 0:
                 if (mMainFragment == null) {
-                    mMainFragment=new MainFragment();
+                    mMainFragment = new MainFragment();
                     mFragmentTransaction.add(R.id.container, mMainFragment);
                 }
                 mFragmentTransaction.show(mMainFragment);
                 break;
             case 1:
                 if (mSettingFragment == null) {
-                    mSettingFragment=new SettingFragment();
+                    mSettingFragment = new SettingFragment();
                     mFragmentTransaction.add(R.id.container, mSettingFragment);
                 }
                 mFragmentTransaction.show(mSettingFragment);
@@ -68,7 +69,6 @@ public class PeopleCom extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BmobDbHelper.getInstance().init(this);
         init();
     }
 

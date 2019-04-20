@@ -48,6 +48,7 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 import static com.example.tangdan.myapplication.bean.Constants.Register.USER_ACCOUNT_REGISTER;
 import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_IMAGE;
+import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_IMAGE_IC_LAUNCHER;
 import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_NAME;
 import static com.example.tangdan.myapplication.bean.Constants.Store.STORE_OBJECT_ID;
 
@@ -307,8 +308,12 @@ public class StoreDetailActivity extends BaseActivity {
         mStoreDetailName.setText(intent.getStringExtra(STORE_NAME));
 //        mStoreDetailImage.setImageResource(intent.getIntExtra(STORE_IMAGE, R.mipmap.ic_launcher));
         byte[] bis = intent.getByteArrayExtra(STORE_IMAGE);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bis, 0, bis.length);
-        mStoreDetailImage.setImageBitmap(bitmap);
+        if (bis!=null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bis, 0, bis.length);
+            mStoreDetailImage.setImageBitmap(bitmap);
+        }else {
+            mStoreDetailImage.setImageResource(intent.getIntExtra(STORE_IMAGE_IC_LAUNCHER,R.mipmap.ic_launcher));
+        }
         mStoreObjectId = intent.getStringExtra(STORE_OBJECT_ID);
         mUserAccountName = intent.getStringExtra(USER_ACCOUNT_REGISTER);
 

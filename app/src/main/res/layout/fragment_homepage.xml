@@ -1,12 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dcdcdc"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ad_banner_pager"
+        android:layout_width="match_parent"
+        android:layout_height="140dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/meat_iv"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:src="@drawable/meat" />
+
+        <ImageView
+            android:id="@+id/veg_iv"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:src="@drawable/veg" />
+
+        <ImageView
+            android:id="@+id/fruit_iv"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_weight="0.25"
+            android:src="@drawable/fruit" />
+
+        <ImageView
+            android:id="@+id/snack_iv"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_weight="0.25"
+            android:src="@drawable/snack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp">
+
+        <ImageView
+            android:id="@+id/indicator_meat_iv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="#dc143c" />
+
+        <ImageView
+            android:id="@+id/indicator_veg_iv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="#dc143c" />
+
+        <ImageView
+            android:id="@+id/indicator_fruit_iv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="#dc143c" />
+
+        <ImageView
+            android:id="@+id/indicator_snack_iv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="#dc143c" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/storeList"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="#d3d3d3"
-        android:dividerHeight="1dp">
-    </ListView>
+        android:dividerHeight="1dp"></ListView>
 </LinearLayout>
