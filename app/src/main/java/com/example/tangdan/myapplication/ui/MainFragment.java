@@ -261,7 +261,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         initBannerAdapter();
         mListView = getActivity().findViewById(R.id.storeList);
         mMeatIv = getActivity().findViewById(R.id.meat_iv);
-        mVegIv = getActivity().findViewById(R.id.veg_iv);
+        mVegIv = getActivity().findViewById(R.id.fruit_iv);
         mFruitIv = getActivity().findViewById(R.id.fruit_iv);
         mSnackIv = getActivity().findViewById(R.id.snack_iv);
         mIdcMeatIv = getActivity().findViewById(R.id.indicator_meat_iv);
