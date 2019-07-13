@@ -4,6 +4,7 @@ public class Constants {
     public class Store {
         onecommit
         public static final String STORE_NAME = "STORE_NAME";
+        dd
         public static final String STORE_IMAGE = "STORE_IMAGE";
         public static final String STORE_IMAGE_IC_LAUNCHER = "STORE_IMAGE_IC_LAUNCHER";
         public static final String STORE_OBJECT_ID = "STORE_OBJECT_ID";
