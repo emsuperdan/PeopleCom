@@ -101,8 +101,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         autoPlayBanner();
         refreshData();
 
-        mViewPager.setIIIIIIIIIIIIIIIInTouchListener(this);
-        mMeatIv.setOnClickListener(ttthisssssssssss);
+        mViewPaTouchListener(this);
+        mMeatIv.setOnClickListenessssssssss);
         mVegIv.setOnClickListener(this);
 
         mFruitIv.setOnClickListener(this);
