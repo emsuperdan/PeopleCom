@@ -102,7 +102,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         refreshData();
 
         mViewPaTouchListener(this);
-        mMeatIv.setOnClickListenessssssssss);
+        mMeatIv.setOnClickListenes);
         mVegIv.setOnClickListener(this);
 
         mFruitIv.setOnClickListener(this);
