@@ -104,6 +104,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         mViewPager.setIIIIIIIIIIIIIIIInTouchListener(this);
         mMeatIv.setOnClickListener(ttthisssssssssss);
         mVegIv.setOnClickListener(this);
+
         mFruitIv.setOnClickListener(this);
         mSnackIv.setOnClickListener(this);
 
