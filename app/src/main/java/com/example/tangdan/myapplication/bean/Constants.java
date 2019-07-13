@@ -2,8 +2,9 @@ package com.example.tangdan.myapplication.bean;
 
 public class Constants {
     public class Store {
-        public static final String THIS_IS_ALPHA_TESTs;
+        onecommit  addsthtoserver
         public static final String STORE_NAME = "STORE_NAME";
+        dd
         public static final String STORE_IMAGE = "STORE_IMAGE";
         public static final String STORE_IMAGE_IC_LAUNCHER = "STORE_IMAGE_IC_LAUNCHER";
         public static final String STORE_OBJECT_ID = "STORE_OBJECT_ID";
