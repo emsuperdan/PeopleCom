@@ -2,7 +2,7 @@ package com.example.tangdan.myapplication.bean;
 
 public class Constants {
     public class Store {
-        adasd
+        onecommit
         public static final String STORE_NAME = "STORE_NAME";
         dd
         public static final String STORE_IMAGE = "STORE_IMAGE";
