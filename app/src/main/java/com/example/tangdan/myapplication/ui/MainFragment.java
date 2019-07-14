@@ -69,22 +69,18 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
     private ImageView mIdcFruitIv;
     private ImageView mIdcSnackIv;
     private Set<String> mHashSet;
-
     private ArrayList<String> mMeatObjectIdList;
     private ArrayList<String> mVegObjectIdList;
     private ArrayList<String> mFruitObjectIdList;
     private ArrayList<String> mSnackObjectIdList;
-
     private int mBannerOnePos;
     private int mBannerTwoPos;
     private int mBannerThreePos;
     private String mAccount;
     private String mPassword;
-
     private int flag = 0;
     private float downX;
     private float downY;
-
     private int indicatorFlag;
 
     @Nullable
@@ -92,7 +88,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_homepage, container, false);
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -100,17 +95,14 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         init();
         autoPlayBanner();
         refreshData();
-
         mViewPaTouchListener(this);
         mMeatIv.setOnClickListenes);
         mVegIv.setOnClickListener(this);
-
         mFruitIv.setOnClickListener(this);
         mSnackIv.setOnClickListener(this);
-
         mListView.setOnItemClickListener(this);
         mListView.setOnItemLongClickListener(this);
-        我要push到dev分支上，这样我就能创建一个fork
+        我创建一个基于dev分支的本地分支，并提交change创建一个新的fork
     }
 
     private void autoPlayBanner() {
