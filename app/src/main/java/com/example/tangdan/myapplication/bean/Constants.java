@@ -2,12 +2,12 @@ package com.example.tangdan.myapplication.bean;
 
 public class Constants {
     public class Store {
-        branch3
+        branch4
         public static final String STORE_NAME = "STORE_NAME";
         public static final String STORE_IMAGE = "STORE_IMAGE";
         public static final String STORE_IMAGE_IC_LAUNCHER = "STORE_IMAGE_IC_LAUNCHER";
         public static final String STORE_OBJECT_ID = "STORE_OBJECT_ID";
-        我开始在branch3上进行开发了，大家注意啊,可是这样为什么我的分之还是没有分叉呢
+        我开始在branch4上进行开发了，大家注意啊,可是这样为什么我的分之还是没有分叉呢
         public static final String USER_ACCOUNT = "USER_ACCOUNT";
         public static final String USER_PASSWORD = "USER_PASSWORD";
         public static final String USER_OBJECT_ID = "USER_OBJECT_ID";
