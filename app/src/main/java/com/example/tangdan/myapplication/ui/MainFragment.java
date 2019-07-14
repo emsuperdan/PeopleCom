@@ -102,6 +102,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         mSnackIv.setOnClickListener(this);
         mListView.setOnItemClickListener(this);
         mListView.setOnItemLongClickListener(this);
+        我创建一个基于dev分支的本地分支，并提交change创建一个新的fork
     }
 
     private void autoPlayBanner() {
