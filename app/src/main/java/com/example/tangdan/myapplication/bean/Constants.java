@@ -2,6 +2,7 @@ package com.example.tangdan.myapplication.bean;
 
 public class Constants {
     public class Store {
+        branch4_base_dev
         public static final String STORE_NAME = "STORE_NAME";
         public static final String STORE_IMAGE = "STORE_IMAGE";
         public static final String STORE_IMAGE_IC_LAUNCHER = "STORE_IMAGE_IC_LAUNCHER";
