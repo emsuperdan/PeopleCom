@@ -110,6 +110,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
 
         mListView.setOnItemClickListener(this);
         mListView.setOnItemLongClickListener(this);
+        我要push到dev分支上，这样我就能创建一个fork
     }
 
     private void autoPlayBanner() {
