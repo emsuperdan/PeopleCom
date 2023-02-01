@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.PagerAdapter;
+
 import java.util.ArrayList;
 
 public class MyViewPagerAdapter extends PagerAdapter {
