@@ -1,6 +1,7 @@
 package com.example.tangdan.myapplication.ui;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,10 +10,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,9 +25,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.tangdan.myapplication.R;
-import com.example.tangdan.myapplication.adapter.MyViewPagerAdatper;
+import com.example.tangdan.myapplication.adapter.MyViewPagerAdapter;
 import com.example.tangdan.myapplication.base.BaseAdapter;
-import com.example.tangdan.myapplication.bean.MyUser;
 import com.example.tangdan.myapplication.bean.StoreBean;
 import com.example.tangdan.myapplication.helper.BmobDbHelper;
 
@@ -56,7 +56,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
     private BaseAdapter mAdapter;
     private ArrayList<StoreBean> mStoreList;
     private ViewPager mViewPager;
-    private MyViewPagerAdatper myViewPagerAdatper;
+    private MyViewPagerAdapter myViewPagerAdatper;
     private ArrayList<ImageView> mImageViews = new ArrayList<>();
     private int mPosition;
     private boolean isPlay;
@@ -101,8 +101,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
         autoPlayBanner();
         refreshData();
 
-        mViewPaTouchListener(this);
-        mMeatIv.setOnClickListenes);
         mVegIv.setOnClickListener(this);
 
         mFruitIv.setOnClickListener(this);
@@ -157,7 +155,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Adap
             image.setScaleType(ImageView.ScaleType.FIT_XY);
             mImageViews.add(image);
         }
-        myViewPagerAdatper = new MyViewPagerAdatper(mImageViews, mViewPager);
+        myViewPagerAdatper = new MyViewPagerAdapter(mImageViews, mViewPager);
     }
 
     private void refreshData() {

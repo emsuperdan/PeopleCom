@@ -1,8 +1,8 @@
 package com.example.tangdan.myapplication.ui;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,7 +25,7 @@ public class PeopleCom extends BaseActivity implements View.OnClickListener{
     public void init() {
         mHomePageBtn = findViewById(R.id.btn_homepage);
         mSettingBtn = findViewById(R.id.btn_setting);
-        mFragmentManager = getSupportFragmentManager();
+        mFragmentManager = getFragmentManager();
         selectFragment(0);
 
         mHomePageBtn.setOnClickListener(this);

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tangdan.myapplication.R;
+import com.example.tangdan.myapplication.base.BaseActivity;
 import com.example.tangdan.myapplication.base.BaseAdapter;
 import com.example.tangdan.myapplication.bean.StoreBean;
 import com.example.tangdan.myapplication.helper.BmobDbHelper;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 import cn.bmob.v3.BmobQuery;
@@ -34,7 +34,7 @@ import cn.bmob.v3.listener.QueryListener;
 import static com.example.tangdan.myapplication.bean.Constants.SharedPreference.SHAREDPREFERENCE_NAME;
 import static com.example.tangdan.myapplication.bean.Constants.SharedPreference.STORE_COLLECTION;
 
-public class StoreCollectionActivity extends AppCompatActivity {
+public class StoreCollectionActivity extends BaseActivity {
     private static final String TAG = "StoreCollectionActivity";
     private ArrayList<StoreBean> mStoreList;
     private TextView textView;

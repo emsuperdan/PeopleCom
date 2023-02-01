@@ -1,7 +1,7 @@
 package com.example.tangdan.myapplication.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.tangdan.myapplication.R;
 import com.example.tangdan.myapplication.base.BaseActivity;
-import com.example.tangdan.myapplication.bean.Constants;
 import com.example.tangdan.myapplication.bean.MyUser;
 import com.example.tangdan.myapplication.bean.UserBean;
 import com.example.tangdan.myapplication.helper.BmobDbHelper;

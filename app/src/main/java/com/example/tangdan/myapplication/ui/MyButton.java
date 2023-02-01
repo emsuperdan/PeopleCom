@@ -3,8 +3,9 @@ package com.example.tangdan.myapplication.ui;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 
-public class MyButton extends android.support.v7.widget.AppCompatButton{
+public class MyButton extends Button {
     private OnClickCollectListener mCollectListener;
     private OnClickFilterListener mFilterListener;
     private String collectionObjectId;
