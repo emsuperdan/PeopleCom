@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.tangdan.myapplication.Constants;
 import com.example.tangdan.myapplication.R;
 import com.example.tangdan.myapplication.base.BaseActivity;
 import com.example.tangdan.myapplication.bean.MyUser;
@@ -21,10 +23,26 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.example.tangdan.myapplication.bean.Constants.Register.USER_ACCOUNT_REGISTER;
 import static com.example.tangdan.myapplication.bean.Constants.Register.USER_PASSWORD_REGISTER;
 import static com.example.tangdan.myapplication.bean.Constants.Store.USER_OBJECT_ID;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 public class WelcomePage extends BaseActivity {
     private static final String TAG = "WelcomePage";
@@ -43,7 +61,75 @@ public class WelcomePage extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         BmobDbHelper.getInstance().init(this);
+        test();
         init();
+        glideTest();
+    }
+
+    private void test(){
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) {
+                emitter.onNext(1);
+                emitter.onNext(2);
+                emitter.onNext(3);
+                String a = null;
+                a.isEmpty();
+                emitter.onNext(4);
+//                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e(Constants.COMMON_TAG, "订阅连接");
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.e(Constants.COMMON_TAG, String.valueOf(integer));
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(Constants.COMMON_TAG, "error eccour");
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e(Constants.COMMON_TAG, "数据流完成");
+            }
+        });
+
+//        Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> emitter) {
+//                emitter.onNext(1);
+//                emitter.onNext(2);
+//                emitter.onNext(3);
+//                String a = null;
+//                a.isEmpty();
+//                emitter.onNext(4);
+////                emitter.onComplete();
+//            }
+//        }).onErrorReturn(new Function<Throwable, Integer>() {
+//                                               @Override
+//                                               public Integer apply(Throwable throwable) throws Exception {
+//                                                   return null;
+//                                               }
+//                                           }
+//
+//        ).subscribe(new Consumer<Integer>() {
+//            @Override
+//            public void accept(Integer integer) {
+//                Log.e(Constants.COMMON_TAG, String.valueOf(integer));
+//            }
+//        });
+    }
+
+    private void glideTest() {
+
     }
 
     private void init() {
